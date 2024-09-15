@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SESI 5</title>
+  </head>
+  <style>
+    #root {
+      background-color: tomato;
+      color: white;
+      font-size: 2em;
+      text-align: center;
+      height: 100vh;
+    }
+  </style>
+  <body>
+    <div id="root">
+      <input type="text" placeholder="Username" id="usernameInput" />
+      <input type="password" placeholder="Password" id="passwordInput" />
+      <button onclick="onLogin()" id="loginButton">Login</button>
+      <button onclick="onLogOut()" id="logOutButton">Log Out</button>
+      <br />
+      <h1 id="landing">WELKAM DI HALAMAN LOGIN</h1>
+      <!-- Role -->
+      <h1 id="admin">Admin</h1>
+      <h1 id="manusiabiasa">Guest</h1>
+      <h1 id="designer">Hallo anak desain</h1>
+      <h1 id="iot">Wih anak IoT</h1>
+    </div>
+    <script type="application/javascript">
+      let usernameInput = document.getElementById("usernameInput");
+      let passwordInput = document.getElementById("passwordInput");
+      let loginButton = document.getElementById("loginButton");
+      let logOutButton = document.getElementById("logOutButton");
+      let admin = document.getElementById("admin");
+      let manusiabiasa = document.getElementById("manusiabiasa");
+      let designer = document.getElementById("designer");
+      let iot = document.getElementById("iot");
+
+      admin.style.display = "none";
+      manusiabiasa.style.display = "none";
+      iot.style.display = "none";
+      designer.style.display = "none";
+      logOutButton.style.display = "none";
+
+      function onLogin() {
+        localStorage.setItem("Username", usernameInput.value);
+        logOutButton.style.display = "block";
+        if (
+          usernameInput.value == "admin" &&
+          passwordInput.value == "admin123"
+        ) {
+          localStorage.setItem("role", "admin");
+          usernameInput.style.display = "none";
+          passwordInput.style.display = "none";
+          loginButton.style.display = "none";
+          manusiabiasa.style.display = "none";
+          designer.style.display = "none";
+          iot.style.display = "none";
+          landing.style.display = "none";
+          admin.style.display = "block";
+        } else if (
+          usernameInput.value == "designer" &&
+          passwordInput.value == "designer123"
+        ) {
+          localStorage.setItem("role", "admin");
+          usernameInput.style.display = "none";
+          passwordInput.style.display = "none";
+          loginButton.style.display = "none";
+          manusiabiasa.style.display = "none";
+          designer.style.display = "block";
+          admin.style.display = "none";
+          iot.style.display = "none";
+        } else if (
+          usernameInput.value == "iot" &&
+          passwordInput.value == "iot123"
+        ) {
+          localStorage.setItem("role", "admin");
+          usernameInput.style.display = "none";
+          passwordInput.style.display = "none";
+          loginButton.style.display = "none";
+          manusiabiasa.style.display = "none";
+          designer.style.display = "none";
+          admin.style.display = "none";
+          iot.style.display = "block";
+        } else {
+          localStorage.setItem("role", "basic");
+          usernameInput.style.display = "none";
+          passwordInput.style.display = "none";
+          loginButton.style.display = "none";
+          admin.style.display = "none";
+          manusiabiasa.style.display = "block";
+        }
+      }
+
+      if (localStorage.getItem("Username")) {
+        usernameInput.style.display = "none";
+        passwordInput.style.display = "none";
+        loginButton.style.display = "none";
+        logOutButton.style.display = "block";
+        if (localStorage.getItem("role") == "admin") {
+          admin.style.display = "block";
+          manusiabiasa.style.display = "none";
+        } else {
+          admin.style.display = "none";
+          manusiabiasa.style.display = "block";
+        }
+      }
+
+      function onLogOut() {
+        localStorage.clear();
+        location.reload();
+      }
+    </script>
+  </body>
+</html>
